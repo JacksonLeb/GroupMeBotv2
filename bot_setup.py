@@ -30,15 +30,18 @@ bot_data = {
     'bot': {
         'name': 'OpenMI Bot v2',
         'group_id': str(group_id),
+        "avatar_url": "https://ibb.co/XYG9C7C",
     },
 }
 
 url = 'https://api.groupme.com/v3/bots?token='
 url += access_token
 
-print("Hello")
 r = requests.post(url, headers=headers, json=bot_data)
 print(r)
+bot_info = r.json()
+bot_id = bot_info["response"]["bot"]["bot_id"]
+print(bot_id)
 
 #ouptut json
 with open('data.json', 'w', encoding='utf-8') as outfile:
