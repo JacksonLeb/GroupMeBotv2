@@ -22,6 +22,23 @@ group_name = "Test Group"
 group_id = findGroupID(group_name, json_data)
 print(group_id)
 
+#registering bot
+headers = {
+    'Content-Type': 'application/json',
+}
+bot_data = {
+    'bot': {
+        'name': 'OpenMI Bot v2',
+        'group_id': str(group_id),
+    },
+}
+
+url = 'https://api.groupme.com/v3/bots?token='
+url += access_token
+
+print("Hello")
+r = requests.post(url, headers=headers, json=bot_data)
+print(r)
 
 #ouptut json
 with open('data.json', 'w', encoding='utf-8') as outfile:
