@@ -17,9 +17,14 @@ url += access_token
 r = requests.get(url)
 json_data = r.json()
 
+#ouptut json
+with open('data.json', 'w', encoding='utf-8') as outfile:
+    json.dump(json_data, outfile, ensure_ascii=False, indent=4)
+
 #groupID retrieval
-group_name = "Test Group"
+group_name = "OpenMI"
 group_id = findGroupID(group_name, json_data)
+print("GROUP ID: ")
 print(group_id)
 
 #registering bot
@@ -45,7 +50,8 @@ print(bot_id)
 
 #ouptut json
 with open('data.json', 'w', encoding='utf-8') as outfile:
-    json.dump(json_data, outfile, ensure_ascii=False, indent=4)
+    json.dump(bot_info, outfile, ensure_ascii=False, indent=4)
+
 
 
 

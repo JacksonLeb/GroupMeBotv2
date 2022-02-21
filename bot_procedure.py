@@ -2,15 +2,17 @@ import json
 import requests
 import time
 from access_token import access_token
+from bot_setup import group_id
+from bot_setup import bot_id
 
 #finding correct group me group and getting those memebrs
-def getNumMembers(data, group_name):
+def getNumMembers(json_data, group_name):
      for group in json_data["response"]:
         if (group["name"] == group_name):
             num_members = len(group["members"])
             return num_members
 
-def getNewMemberInfo(data, group_name, num_new):
+def getNewMemberInfo(json_data, group_name, num_new):
     name_list = []
     for group in json_data["response"]:
         if (group["name"] == group_name):
@@ -31,7 +33,7 @@ def getJSONdata():
 
 #detects new members being added and gives them welcome message + 
 #other important info.
-group_name = "Test Group"
+group_name = "OpenMI"
 
 while (True):
     json_data = getJSONdata()
@@ -70,7 +72,8 @@ while (True):
                 " page: https://www.linkedin.com/groups/12578317/"
 
             message_data = {
-                'bot_id': "6cce3106596c38b771da4fb5ee",
+                'bot_id': str(bot_id),
+                "group_id": str(group_id),
                 'text': str(greeting_message),
             }
 
